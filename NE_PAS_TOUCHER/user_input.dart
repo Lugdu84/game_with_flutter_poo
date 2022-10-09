@@ -26,3 +26,15 @@ double readDouble(String question) {
   } while (typedValue == null);
   return typedValue;
 }
+
+int selectFromMenu({required String message, required int max}) {
+  int userChoice = 1;
+  do {
+    print(message);
+    if (userChoice < 1 || userChoice > max) {
+      print("Veuillez choisir une valeur comprise entre 1 et $max");
+    }
+    userChoice = readInt("Quel est votre choix ?");
+  } while (userChoice < 1 || userChoice > max);
+  return userChoice;
+}

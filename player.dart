@@ -19,23 +19,22 @@ class Player {
   }
 
   attackBot({required Bot bot}) {
-    int choice = 1;
+    int userChoice = 1;
     if (health < 40) {
-      do {
-        print(
-            "$nickname, Santé : $health % quelle action souhaitez vous faire ?");
-        print("1 - Attaquer le bot");
-        print("2 - Vous reposer pour récupérer de la santé");
-        choice = readInt("Quel est votre choix ?");
-      } while (choice < 1 || choice > 2);
+      userChoice = selectFromMenu(
+          message:
+              '''$nickname, Santé : $health % quelle action souhaitez vous faire ?
+      1 - Attaquer le bot
+      2 - Vous reposer pour récupérer de la santé ''',
+          max: 2);
     }
 
-    if (choice == 1) {
+    if (userChoice == 1) {
       int dices = rollTheDice(name: nickname);
       final hitStrength = dices * strength;
       bot.health = max(0, bot.health - hitStrength);
     } else {
-      raiseHealth();
+      raiseHealth(factor: 0.75);
     }
   }
 
