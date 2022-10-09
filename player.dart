@@ -4,12 +4,14 @@ import 'app.dart';
 import 'bot.dart';
 
 class Player {
-  String nickname = "";
+  String nickname;
   int health = 100;
   int strength = 1;
   int xp = 0;
 
   bool get isAlive => health > 0;
+
+  Player({required this.nickname});
 
   displayYourData() {
     print("$nickname - Santé $health % - Force : $strength");

@@ -4,9 +4,9 @@ import 'bot.dart';
 import 'player.dart';
 
 void main() {
-  final player = Player();
+  final nickName = readText("Entrez votre pseudo");
+  final player = Player(nickname: nickName);
   int botCount = 0;
-  player.nickname = readText("Entrez votre pseudo");
   while (player.isAlive) {
     final bot = Bot();
     bot.strength = max(1, player.strength - 1);
