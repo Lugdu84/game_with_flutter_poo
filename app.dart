@@ -1,4 +1,3 @@
-// @dart=2.10
 import 'dart:math';
 import 'NE_PAS_TOUCHER/user_input.dart';
 import 'bot.dart';
@@ -30,8 +29,8 @@ void main() {
     //     playerAttackBot(player: player, bot: bot);
     //   }
     // }
-    displayPlayer(player: player);
-    displayBot(bot: bot);
+    player.display();
+    bot.display;
     print("Fin du tour $tour");
     tour++;
     isItPlayerTurn = !isItPlayerTurn;
@@ -40,36 +39,27 @@ void main() {
   whoWin(player: player, bot: bot);
 }
 
-int rollTheDice({String name}) {
+int rollTheDice({required String name}) {
   int dices = (Random().nextInt(6) + 1) + (Random().nextInt(6) + 1);
   print("$name a lancé les dés et a obtenu un $dices ");
   print("$name assène un coup sur le bot avec une force de $dices");
   return dices;
 }
 
-playerAttackBot({Player player, Bot bot}) {
+playerAttackBot({required Player player, required Bot bot}) {
   int dices = rollTheDice(name: player.nickname);
   bot.health -= dices;
 }
 
-botAttackPlayer({Player player, Bot bot}) {
+botAttackPlayer({required Player player, required Bot bot}) {
   int dices = rollTheDice(name: "Le bot");
   player.health -= dices;
 }
 
-whoWin({Player player, Bot bot}) {
+whoWin({required Player player, required Bot bot}) {
   if (player.health < 0) {
     print("Le bot vous a terrassé !");
   } else {
     print("${player.nickname} a vaincu le bot !");
   }
-}
-
-displayPlayer({player: Player}) {
-  print(
-      "${player.nickname} - Santé ${player.health}% - Force : ${player.strength}");
-}
-
-displayBot({bot: Bot}) {
-  print("Bot - Santé ${bot.health} % - Force : ${bot.strength}");
 }

@@ -1,13 +1,12 @@
-// @dart=2.10
 import 'dart:io';
 
 String readText(String question) {
   print(question);
-  return stdin.readLineSync();
+  return stdin.readLineSync() ?? "";
 }
 
 int readInt(String question) {
-  int typedValue;
+  int? typedValue;
   do {
     typedValue = int.tryParse(readText(question));
     if (typedValue == null) {
@@ -18,7 +17,7 @@ int readInt(String question) {
 }
 
 double readDouble(String question) {
-  double typedValue;
+  double? typedValue;
   do {
     typedValue = double.tryParse(readText(question));
     if (typedValue == null) {
