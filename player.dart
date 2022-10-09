@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'app.dart';
 import 'bot.dart';
 
@@ -8,6 +6,8 @@ class Player {
   int health = 100;
   int strength = 1;
   int xp = 0;
+
+  bool get isAlive => health > 0;
 
   displayYourData() {
     print("$nickname - Santé $health % - Force : $strength");

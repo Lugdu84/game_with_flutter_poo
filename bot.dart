@@ -5,6 +5,8 @@ class Bot {
   int strength = 1;
   int health = 100;
 
+  bool get isAlive => health > 0;
+
   display() {
     print("Bot - Santé $health % - Force : $strength");
   }

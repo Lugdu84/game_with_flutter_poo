@@ -7,7 +7,7 @@ void main() {
   final player = Player();
 
   player.nickname = readText("Entrez votre pseudo");
-  do {
+  while (player.isAlive) {
     final bot = Bot();
     bot.strength = player.strength;
     var tour = 1;
@@ -24,9 +24,9 @@ void main() {
       print("Fin du tour $tour");
       tour++;
       isItPlayerTurn = !isItPlayerTurn;
-    } while (bot.health > 0 && player.health > 0);
+    } while (bot.isAlive && player.isAlive);
     whoWin(player: player, bot: bot);
-  } while (player.health > 0);
+  }
 }
 
 int rollTheDice({required String name}) {
