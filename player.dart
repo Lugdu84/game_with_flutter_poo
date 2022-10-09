@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'app.dart';
 import 'bot.dart';
 
@@ -13,10 +15,10 @@ class Player {
     print("$nickname - Santé $health % - Force : $strength");
   }
 
-  attackBot({bot: Bot}) {
+  attackBot({required Bot bot}) {
     int dices = rollTheDice(name: nickname);
     final hitStrength = dices * strength;
-    bot.health -= hitStrength;
+    bot.health = max(0, bot.health - hitStrength);
   }
 
   win({required Bot bot}) {
@@ -24,7 +26,12 @@ class Player {
     xp += bot.strength * 10;
     print(
         "$nickname a maintenant $xp points d'expérience et $strength points de force");
-    health = 100;
+    raiseHealth(factor: 1.5);
     print("$nickname s'est reposé et à regagné tous ces points de vies");
+  }
+
+  raiseHealth({double factor = 1.4}) {
+    final gain = health * factor;
+    health = min(100, health + gain.toInt());
   }
 }

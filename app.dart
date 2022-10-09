@@ -9,7 +9,7 @@ void main() {
   player.nickname = readText("Entrez votre pseudo");
   while (player.isAlive) {
     final bot = Bot();
-    bot.strength = player.strength;
+    bot.strength = max(1, player.strength - 1);
     var tour = 1;
     var isItPlayerTurn = Random().nextBool();
     do {

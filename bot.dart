@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'app.dart';
 import 'player.dart';
 
@@ -14,6 +16,6 @@ class Bot {
   attackPlayer({required Player player}) {
     int dices = rollTheDice(name: "Le bot");
     final hitStrength = dices * strength;
-    player.health -= hitStrength;
+    player.health = max(0, player.health - hitStrength);
   }
 }
