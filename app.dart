@@ -12,6 +12,7 @@ void main() {
     bot.strength = max(1, player.strength - 1);
     var tour = 1;
     var isItPlayerTurn = Random().nextBool();
+    print("Un bot se présente à vous et veut se battre...");
     do {
       readText("Appuyez sur entrez pour lancer les dés");
       if (isItPlayerTurn) {
