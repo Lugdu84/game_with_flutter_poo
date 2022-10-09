@@ -2,17 +2,15 @@
 import 'dart:math';
 import 'NE_PAS_TOUCHER/user_input.dart';
 import 'bot.dart';
-import 'player.dart';
 
 void main() {
-  final player = Player();
   final bot = Bot();
-  player.surnName = readText("Entrez votre pseudo");
+  String userName = readText("Entrez votre pseudo");
 
   var tour = 1;
   do {
     readText("Appuyez sur entrez pour lancer les dés");
-    bot.health -= rollTheDice(playerName: player.surnName);
+    bot.health -= rollTheDice(playerName: userName);
     print("Bot - Santé ${bot.health} %");
     print("Fin du tour $tour");
     tour++;
