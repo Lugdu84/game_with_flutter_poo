@@ -52,7 +52,7 @@ botAttackPlayer({Player player, Bot bot}) {
 
 whoWin({Player player, Bot bot}) {
   if (player.health < 0) {
-    print("Le bot vous a terrassé ...");
+    print("Le bot vous a terrassé !");
   } else {
     print("${player.nickname} a vaincu le bot !");
   }
