@@ -23,7 +23,7 @@ void main() {
     print("Bot - Santé ${bot.health} %");
     print("Fin du tour $tour");
     tour++;
-  } while (bot.health > 0 || player.health > 0);
+  } while (bot.health >= 0 || player.health >= 0);
 
   whoWin(player: player, bot: bot);
 }
