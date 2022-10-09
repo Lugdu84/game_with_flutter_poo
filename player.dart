@@ -28,8 +28,12 @@ class Player {
     xp += bot.strength * 10;
     print(
         "$nickname a maintenant $xp points d'expérience et $strength points de force");
-    raiseHealth(factor: 1.5);
+    takeHealingPotion(healingValue: 80);
     print("$nickname s'est reposé et à regagné tous ces points de vies");
+  }
+
+  takeHealingPotion({int healingValue = 50}) {
+    health = min(100, health + healingValue);
   }
 
   raiseHealth({double factor = 1.4}) {
