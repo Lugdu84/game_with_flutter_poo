@@ -7,7 +7,7 @@ import 'player.dart';
 void main() {
   final player = Player();
   final bot = Bot();
-  player.pseudo = readText("Entrez votre pseudo");
+  player.nickname = readText("Entrez votre pseudo");
   var tour = 1;
   do {
     readText("Appuyez sur entrez pour lancer les dés");
@@ -34,15 +34,17 @@ int rollTheDice() {
 
 playerAttackBot({Player player, Bot bot}) {
   int dices = rollTheDice();
-  print("${player.pseudo} a lancé les dés et a obtenu un $dices ");
-  print("${player.pseudo} assène un coup sur le bot avec une force de $dices");
+  print("${player.nickname} a lancé les dés et a obtenu un $dices ");
+  print(
+      "${player.nickname} assène un coup sur le bot avec une force de $dices");
   bot.health -= dices;
 }
 
 botAttackPlayer({Player player, Bot bot}) {
   int dices = rollTheDice();
   print("Le bot a lancé les dés et a obtenu un $dices ");
-  print("Le bot assène un coup sur ${player.pseudo} avec une force de $dices");
+  print(
+      "Le bot assène un coup sur ${player.nickname} avec une force de $dices");
   player.health -= dices;
 }
 

@@ -1,5 +1,5 @@
 class Player {
-  String pseudo = "";
+  String nickname = "";
   int health = 100;
   int strength = 1;
 }
