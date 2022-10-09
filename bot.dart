@@ -12,7 +12,7 @@ class Bot {
   }
 
   attackPlayer({required Player player}) {
-    int dices = rollTheDice(name: "Le bot") * strength;
+    int dices = rollTheDice(name: "Le bot");
     final hitStrength = dices * strength;
     player.health -= hitStrength;
   }

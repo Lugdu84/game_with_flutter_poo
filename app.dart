@@ -5,7 +5,7 @@ import 'player.dart';
 
 void main() {
   final player = Player();
-
+  int botCount = 0;
   player.nickname = readText("Entrez votre pseudo");
   while (player.isAlive) {
     final bot = Bot();
@@ -25,8 +25,13 @@ void main() {
       tour++;
       isItPlayerTurn = !isItPlayerTurn;
     } while (bot.isAlive && player.isAlive);
-    whoWin(player: player, bot: bot);
+    if (player.isAlive) {
+      print("${player.nickname} a vaincu le bot !");
+      player.win(bot: bot);
+      botCount++;
+    }
   }
+  print("${player.nickname} a vaincu $botCount bot(s) avant d'être terrassé !");
 }
 
 int rollTheDice({required String name}) {
@@ -34,13 +39,4 @@ int rollTheDice({required String name}) {
   print("$name a lancé les dés et a obtenu un $dices ");
   print("$name assène un coup sur le bot avec une force de $dices");
   return dices;
-}
-
-whoWin({required Player player, required Bot bot}) {
-  if (player.health < 0) {
-    print("Le bot vous a terrassé !");
-  } else {
-    print("${player.nickname} a vaincu le bot !");
-    player.win(bot: bot);
-  }
 }
