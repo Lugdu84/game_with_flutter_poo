@@ -9,6 +9,8 @@ class Bot {
 
   bool get isAlive => health > 0;
 
+  Bot({this.strength = 1});
+
   display() {
     print("Bot - Santé $health % - Force : $strength");
   }

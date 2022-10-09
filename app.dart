@@ -8,8 +8,7 @@ void main() {
   final player = Player(nickname: nickName);
   int botCount = 0;
   while (player.isAlive) {
-    final bot = Bot();
-    bot.strength = max(1, player.strength - 1);
+    final bot = Bot(strength: max(1, player.strength - 1));
     var tour = 1;
     var isItPlayerTurn = Random().nextBool();
     print("Un bot se présente à vous et veut se battre...");
