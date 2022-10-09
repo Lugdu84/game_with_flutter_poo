@@ -20,7 +20,7 @@ class Player {
   }
 
   win({required Bot bot}) {
-    strength += Random().nextInt(3);
+    strength += bot.strength;
     xp += bot.strength * 10;
     print(
         "$nickname a maintenant $xp points d'expérience et $strength points de force");
