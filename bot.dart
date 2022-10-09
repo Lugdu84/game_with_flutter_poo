@@ -4,7 +4,7 @@ import 'app.dart';
 import 'player.dart';
 
 class Bot {
-  int strength = 1;
+  final int strength;
   int health = 100;
 
   bool get isAlive => health > 0;
