@@ -15,17 +15,16 @@ void main() {
     do {
       readText("Appuyez sur entrez pour lancer les dés");
       if (isItPlayerTurn) {
-        player.attack(bot: bot);
+        player.attackBot(bot: bot);
       } else {
-        bot.attack(player: player);
+        bot.attackPlayer(player: player);
       }
-      player.display();
-      bot.display;
+      player.displayYourData();
+      bot.display();
       print("Fin du tour $tour");
       tour++;
       isItPlayerTurn = !isItPlayerTurn;
     } while (bot.health > 0 && player.health > 0);
-
     whoWin(player: player, bot: bot);
   } while (player.health > 0);
 }
@@ -42,5 +41,6 @@ whoWin({required Player player, required Bot bot}) {
     print("Le bot vous a terrassé !");
   } else {
     print("${player.nickname} a vaincu le bot !");
+    player.win(bot: bot);
   }
 }

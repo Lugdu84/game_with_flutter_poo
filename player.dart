@@ -9,16 +9,17 @@ class Player {
   int strength = 1;
   int xp = 0;
 
-  display() {
+  displayYourData() {
     print("$nickname - Santé $health % - Force : $strength");
   }
 
-  attack({bot: Bot}) {
+  attackBot({bot: Bot}) {
     int dices = rollTheDice(name: nickname);
-    bot.health -= dices * strength;
+    final hitStrength = dices * strength;
+    bot.health -= hitStrength;
   }
 
-  victory({required Bot bot}) {
+  win({required Bot bot}) {
     strength += Random().nextInt(3);
     xp += bot.strength * 10;
     print(

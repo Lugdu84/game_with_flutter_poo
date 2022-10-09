@@ -9,8 +9,9 @@ class Bot {
     print("Bot - Santé $health % - Force : $strength");
   }
 
-  attack({required Player player}) {
+  attackPlayer({required Player player}) {
     int dices = rollTheDice(name: "Le bot") * strength;
-    player.health -= dices;
+    final hitStrength = dices * strength;
+    player.health -= hitStrength;
   }
 }
