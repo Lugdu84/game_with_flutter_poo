@@ -23,32 +23,30 @@ void main() {
         playerAttackBot(player: player, bot: bot);
       }
     }
-    print("Player - Santé ${player.health}%");
+    print("${player.nickname} - Santé ${player.health}%");
     print("Bot - Santé ${bot.health} %");
     print("Fin du tour $tour");
     tour++;
-  } while (bot.health >= 0 || player.health >= 0);
+  } while (bot.health > 0 && player.health > 0);
 
   whoWin(player: player, bot: bot);
 }
 
-int rollTheDice() {
-  return (Random().nextInt(6) + 1) + (Random().nextInt(6) + 1);
+int rollTheDice({String name}) {
+  int dices = (Random().nextInt(6) + 1) + (Random().nextInt(6) + 1);
+
+  print("$name a lancé les dés et a obtenu un $dices ");
+  print("$name assène un coup sur le bot avec une force de $dices");
+  return dices;
 }
 
 playerAttackBot({Player player, Bot bot}) {
-  int dices = rollTheDice();
-  print("${player.nickname} a lancé les dés et a obtenu un $dices ");
-  print(
-      "${player.nickname} assène un coup sur le bot avec une force de $dices");
+  int dices = rollTheDice(name: player.nickname);
   bot.health -= dices;
 }
 
 botAttackPlayer({Player player, Bot bot}) {
-  int dices = rollTheDice();
-  print("Le bot a lancé les dés et a obtenu un $dices ");
-  print(
-      "Le bot assène un coup sur ${player.nickname} avec une force de $dices");
+  int dices = rollTheDice(name: "Le bot");
   player.health -= dices;
 }
 
@@ -56,6 +54,6 @@ whoWin({Player player, Bot bot}) {
   if (player.health < 0) {
     print("Le bot vous a terrassé ...");
   } else {
-    print("Vous avez gagné la partie !");
+    print("${player.nickname} a vaincu le bot !");
   }
 }
