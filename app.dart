@@ -23,8 +23,8 @@ void main() {
         playerAttackBot(player: player, bot: bot);
       }
     }
-    print("${player.nickname} - Santé ${player.health}%");
-    print("Bot - Santé ${bot.health} %");
+    infosPlayer(player: player);
+    infosBot(bot: bot);
     print("Fin du tour $tour");
     tour++;
   } while (bot.health > 0 && player.health > 0);
@@ -56,4 +56,12 @@ whoWin({Player player, Bot bot}) {
   } else {
     print("${player.nickname} a vaincu le bot !");
   }
+}
+
+infosPlayer({player: Player}) {
+  print("${player.nickname} - Santé ${player.health}%");
+}
+
+infosBot({bot: Bot}) {
+  print("Bot - Santé ${bot.health} %");
 }
