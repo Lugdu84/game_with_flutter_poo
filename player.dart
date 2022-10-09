@@ -1,4 +1,5 @@
 class Player {
-  String surnName = "";
-  int score = 0;
+  String pseudo = "";
+  int health = 100;
+  int strength = 1;
 }
