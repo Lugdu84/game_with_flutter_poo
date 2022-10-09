@@ -11,7 +11,7 @@ void main() {
   var tour = 1;
   do {
     readText("Appuyez sur entrez pour lancer les dés");
-    int first = Random().nextInt(1);
+    int first = Random().nextInt(2);
     if (first == 0) {
       playerAttackBot(player: player, bot: bot);
       if (bot.health > 0) {
