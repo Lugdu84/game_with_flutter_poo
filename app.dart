@@ -14,10 +14,14 @@ void main() {
     int first = Random().nextInt(1);
     if (first == 0) {
       playerAttackBot(player: player, bot: bot);
-      botAttackPlayer(bot: bot, player: player);
+      if (bot.health > 0) {
+        botAttackPlayer(bot: bot, player: player);
+      }
     } else {
       botAttackPlayer(bot: bot, player: player);
-      playerAttackBot(player: player, bot: bot);
+      if (player.health > 0) {
+        playerAttackBot(player: player, bot: bot);
+      }
     }
     print("Player - Santé ${player.health}%");
     print("Bot - Santé ${bot.health} %");
