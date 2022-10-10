@@ -19,6 +19,19 @@ class Fighter {
 
   bool get isAlive => _health > 0;
 
+  displayYourData() {
+    print(" - Santé $health % - Force : $strength");
+  }
+
+  takeHealingPotion({int healingValue = 50}) {
+    health = min(100, health + healingValue);
+  }
+
+  raiseHealth({double factor = 1.4}) {
+    final gain = health * factor;
+    health = min(100, health + gain.toInt());
+  }
+
   isAttacked({required int hitStrength}) {
     // _health = max(0, _health - hitStrength);
     health -= hitStrength;

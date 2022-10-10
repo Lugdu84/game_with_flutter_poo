@@ -23,7 +23,7 @@ void main() {
         bot.attackPlayer(player: player);
       }
       player.displayYourData();
-      bot.display();
+      bot.displayYourData();
       print("Fin du tour $tour");
       tour++;
       isItPlayerTurn = !isItPlayerTurn;

@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:math';
 import 'NE_PAS_TOUCHER/user_input.dart';
 import 'app.dart';
@@ -19,10 +20,6 @@ class Player extends Fighter {
       : _nickname = nickname,
         _weapon = weapon,
         super(strength: 1);
-
-  displayYourData() {
-    print("$nickname - Santé $health % - Force : $strength");
-  }
 
   attackOrRest({required Bot bot}) {
     int userChoice = 1;
@@ -75,17 +72,14 @@ class Player extends Fighter {
     }
   }
 
-  takeHealingPotion({int healingValue = 50}) {
-    health = min(100, health + healingValue);
-  }
-
-  raiseHealth({double factor = 1.4}) {
-    final gain = health * factor;
-    health = min(100, health + gain.toInt());
-  }
-
   isAttacked({required int hitStrength}) {
     // _health = max(0, _health - hitStrength);
     health -= hitStrength;
+  }
+
+  @override
+  displayYourData() {
+    stdout.write(nickname);
+    super.displayYourData();
   }
 }
