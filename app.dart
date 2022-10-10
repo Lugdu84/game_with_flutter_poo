@@ -2,10 +2,13 @@ import 'dart:math';
 import 'NE_PAS_TOUCHER/user_input.dart';
 import 'bot.dart';
 import 'player.dart';
+import 'weapon.dart';
 
 void main() {
   final nickName = readText("Entrez votre pseudo");
-  final player = Player(nickname: nickName);
+  final player = Player(
+      nickname: nickName,
+      weapon: const Weapon(name: "épée courte", powerful: 1, accuracy: 100));
   int botCount = 0;
   while (player.isAlive) {
     final bot = Bot(strength: max(1, player.strength - 1));
@@ -15,7 +18,7 @@ void main() {
     do {
       readText("Appuyez sur entrez pour lancer les dés");
       if (isItPlayerTurn) {
-        player.attackBot(bot: bot);
+        player.attackOrRest(bot: bot);
       } else {
         bot.attackPlayer(player: player);
       }
@@ -37,6 +40,5 @@ void main() {
 int rollTheDice({required String name}) {
   int dices = (Random().nextInt(6) + 1) + (Random().nextInt(6) + 1);
   print("$name a lancé les dés et a obtenu un $dices ");
-  print("$name assène un coup sur le bot avec une force de $dices");
   return dices;
 }

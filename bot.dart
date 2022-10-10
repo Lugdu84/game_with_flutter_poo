@@ -11,6 +11,10 @@ class Bot {
   int get strength => _strength;
   bool get isAlive => health > 0;
 
+  set health(int health) {
+    _health = max(0, health);
+  }
+
   Bot({strength = 1}) : _strength = strength;
 
   display() {
@@ -21,9 +25,12 @@ class Bot {
     int dices = rollTheDice(name: "Le bot");
     final hitStrength = dices * _strength;
     player.isAttacked(hitStrength: hitStrength);
+    print(
+        "Le bot assène un coup sur ${player.nickname} avec une force de $hitStrength");
   }
 
   isAttacked({required int hitStrength}) {
-    _health = max(0, _health - hitStrength);
+    // _health = max(0, _health - hitStrength);
+    health -= hitStrength;
   }
 }
