@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'app.dart';
 import 'fighter.dart';
 import 'player.dart';
