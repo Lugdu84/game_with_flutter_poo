@@ -2,7 +2,9 @@ import 'dart:math';
 
 class Fighter {
   int _health = 100;
-  int _strength = 1;
+  int _strength;
+
+  Fighter({required strength}) : _strength = strength;
 
   int get strength => _strength;
   int get health => _health;
