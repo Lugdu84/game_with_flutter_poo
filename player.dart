@@ -7,18 +7,18 @@ import 'fighter.dart';
 import 'weapon.dart';
 import 'weapon_list_manager.dart';
 
-class Player extends Fighter {
+class Player extends Fighter implements Comparable<Player> {
   String _nickname;
-  int _xp = 0;
-  Weapon _weapon;
+  int _score = 0;
+  Weapon _weapon = Weapon(name: "dague", powerful: 1, accuracy: 100);
   final _weaponListManager = WeaponListManager();
 
   String get nickname => _nickname;
   Weapon get weapon => _weapon;
+  int get score => _score;
 
-  Player({required nickname, required weapon})
+  Player({required nickname})
       : _nickname = nickname,
-        _weapon = weapon,
         super(strength: 1);
 
   attackOrRest({required Bot bot}) {
@@ -55,9 +55,9 @@ class Player extends Fighter {
 
   win({required Bot bot}) {
     strength += bot.strength;
-    _xp += bot.strength * 10;
+    _score += bot.strength * health;
     print(
-        "$nickname a maintenant $_xp points d'expérience et $strength points de force");
+        "$nickname a maintenant $_score points d'expérience et $strength points de force");
     takeHealingPotion(healingValue: 80);
     print("$nickname s'est reposé et à regagné tous ses points de vies");
     final newWeapon = _weaponListManager.getNextWeaponToLoot();
@@ -82,4 +82,11 @@ class Player extends Fighter {
     stdout.write(nickname);
     super.displayYourData();
   }
+
+  prepareForNewGame() {
+    health = 100;
+  }
+
+  @override
+  int compareTo(Player other) => other.score.compareTo(score);
 }

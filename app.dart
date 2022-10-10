@@ -2,13 +2,31 @@ import 'dart:math';
 import 'NE_PAS_TOUCHER/user_input.dart';
 import 'bot.dart';
 import 'player.dart';
-import 'weapon.dart';
 
 void main() {
-  final nickName = readText("Entrez votre pseudo");
-  final player = Player(
-      nickname: nickName,
-      weapon: const Weapon(name: "épée courte", powerful: 1, accuracy: 100));
+  Map<String, Player> players = {};
+  String nickname;
+  do {
+    nickname = readText("Entrez votre pseudo");
+    if (nickname.isNotEmpty) {
+      final player = players[nickname] ?? Player(nickname: nickname);
+      player.prepareForNewGame();
+      startFight(player: player);
+      players[nickname] = player;
+      displayHallOfFame(players.values.toList());
+    }
+  } while (nickname.isNotEmpty);
+}
+
+displayHallOfFame(List<Player> players) {
+  players.sort();
+  print("Hall of Fame");
+  for (var player in players) {
+    print("${player.nickname} - Score : ${player.score}");
+  }
+}
+
+startFight({required Player player}) {
   int botCount = 0;
   while (player.isAlive) {
     final bot = Bot(strength: max(1, player.strength - 1));
