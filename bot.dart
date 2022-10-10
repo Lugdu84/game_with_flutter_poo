@@ -4,20 +4,26 @@ import 'app.dart';
 import 'player.dart';
 
 class Bot {
-  final int strength;
-  int health = 100;
+  final int _strength;
+  int _health = 100;
 
+  int get health => _health;
+  int get strength => _strength;
   bool get isAlive => health > 0;
 
-  Bot({this.strength = 1});
+  Bot({strength = 1}) : _strength = strength;
 
   display() {
-    print("Bot - Santé $health % - Force : $strength");
+    print("Bot - Santé $health % - Force : $_strength");
   }
 
   attackPlayer({required Player player}) {
     int dices = rollTheDice(name: "Le bot");
-    final hitStrength = dices * strength;
-    player.health = max(0, player.health - hitStrength);
+    final hitStrength = dices * _strength;
+    player.isAttacked(hitStrength: hitStrength);
+  }
+
+  isAttacked({required int hitStrength}) {
+    _health = max(0, _health - hitStrength);
   }
 }
